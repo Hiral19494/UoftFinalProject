@@ -1,0 +1,2 @@
+rootProject.name='Uoft Final Project'
+include ':app'
