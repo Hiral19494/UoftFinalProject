@@ -6,15 +6,11 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.uoftfinalproject.data.APIClient;
-import com.example.uoftfinalproject.model.UserInfo;
+import com.example.uoftfinalproject.data.local.MyDatabaseHandler;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginActivity extends BaseActivity {
 
@@ -22,6 +18,7 @@ public class LoginActivity extends BaseActivity {
     EditText edtEmail;
     @BindView(R.id.edt_password)
     EditText edtPassword;
+    MyDatabaseHandler myDatabaseHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +26,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
+        myDatabaseHandler = new MyDatabaseHandler(this);
 
     }
 
@@ -41,33 +39,32 @@ public class LoginActivity extends BaseActivity {
             Toast.makeText(getApplicationContext(), "Enter Password", Toast.LENGTH_SHORT).show();
             Log.i("password","Enter Password");
         }else{
-            apiLoginCall();
+            sqliteDatabaseCall();
         }
 
     }
 
-    private void apiLoginCall() {
-        Call<UserInfo> userInfoCall = APIClient.getApiInstanceLogin().userLogin(edtEmail.getText().toString(),edtPassword.getText().toString());
-        userInfoCall.enqueue(new Callback<UserInfo>() {
-            @Override
-            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
-                if(response.isSuccessful()){
-                    Intent homeScreenIntent = new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(homeScreenIntent);
-                    finish();
-                    Toast.makeText(getBaseContext(),"Login Successful",Toast.LENGTH_LONG).show();
-                    Log.i("login details","Login successful");
+    private void sqliteDatabaseCall() {
+        boolean status = (myDatabaseHandler.getLoginData(edtEmail.getText().toString(), edtPassword.getText().toString()));
+               Log.d("email",edtEmail.getText().toString());
+                Log.d("status", String.valueOf(status));
+        if (status) {
+            Toast.makeText(getApplicationContext(), "Login Successfully", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+        } else {
+            Toast.makeText(getApplicationContext(), "You are not Registerd!", Toast.LENGTH_LONG).show();
 
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<UserInfo> call, Throwable t) {
-                t.printStackTrace();
-                Toast .makeText(getApplicationContext(),"Email and Password are not matched"+t.getMessage(),Toast.LENGTH_LONG).show();
-                Log.i("login details","login failure:"+t.getMessage());
-            }
-        });
+        }
     }
+
+    @OnClick(R.id.txv_link_signup)
+    public void signUpDetails(){
+        Intent signUpScreenIntent = new Intent(LoginActivity.this,SignUpActivity.class);
+        startActivity(signUpScreenIntent);
+        finish();
+    }
+
+
+
 }

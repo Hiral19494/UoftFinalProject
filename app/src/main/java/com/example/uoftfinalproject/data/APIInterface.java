@@ -14,4 +14,8 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST("/api/login")
     Call<UserInfo> userLogin(@Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("/api/register")
+    Call<UserInfo> userSignUp(@Field("email") String email,@Field("password") String password);
 }

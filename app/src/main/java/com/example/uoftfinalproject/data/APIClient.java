@@ -29,7 +29,7 @@ public class APIClient {
 
 
     }
-    static Retrofit getLogin() {
+  public   static Retrofit getLogin() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
