@@ -1,21 +1,15 @@
 package com.example.uoftfinalproject.data;
 
 
+import com.example.uoftfinalproject.model.Product;
 
-import com.example.uoftfinalproject.model.UserInfo;
+import java.util.ArrayList;
 
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
 
 public interface APIInterface {
 
-    @FormUrlEncoded
-    @POST("/api/login")
-    Call<UserInfo> userLogin(@Field("email") String email, @Field("password") String password);
-
-    @FormUrlEncoded
-    @POST("/api/register")
-    Call<UserInfo> userSignUp(@Field("email") String email,@Field("password") String password);
+    @GET("devStepin2IT/apitest/productData")
+    Call<ArrayList<Product>> productDetails();
 }

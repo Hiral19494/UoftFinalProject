@@ -9,4 +9,5 @@
     <color name="primary_darker_login">#CC1D1D</color>
     <color name="product_name">#535353</color>
     <color name="product_description">#a9a9a9</color>
+    <color name="black">#000000</color>
 </resources>

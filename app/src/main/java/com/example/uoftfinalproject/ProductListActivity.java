@@ -10,6 +10,7 @@ import com.example.uoftfinalproject.model.Product;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -18,18 +19,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-class ProductActivity  extends BaseActivity {
+public class ProductListActivity extends AppCompatActivity {
     @BindView(R.id.rsv_products)
     RecyclerView rsvProduct;
     private ArrayList<Product> productList = new ArrayList<>();
     private ProductDetailsAdapter productDetailsAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
-
         ButterKnife.bind(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Product List");
@@ -64,3 +62,4 @@ class ProductActivity  extends BaseActivity {
 
     }
 }
+

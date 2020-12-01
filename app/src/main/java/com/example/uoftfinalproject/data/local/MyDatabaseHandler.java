@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class MyDatabaseHandler extends SQLiteOpenHelper {
 
@@ -60,15 +59,10 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
 
         String[] columns = {COLUMN_ID};
 
-Log.d("data", String.valueOf(columns));
         String selection = COLUMN_EMAIL + " = ?" + " AND " + COLUMN_PASSWORD + " = ?";
         String[] selectionArgs = {email, password};
-
-
         Cursor cursor = db.query(TABLE_USERS, columns, selection, selectionArgs, null, null, null);
-        Log.d("ddd", String.valueOf(cursor));
         int count = cursor.getCount();
-Log.d("count", String.valueOf(count));
         cursor.close();
         close();
 

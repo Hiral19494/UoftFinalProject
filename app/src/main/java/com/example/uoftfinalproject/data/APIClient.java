@@ -29,27 +29,9 @@ public class APIClient {
 
 
     }
-  public   static Retrofit getLogin() {
-
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BaseActivity.LOGINURL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build();
-
-
-        return retrofit;
-
-
-    }
-    public static APIInterface getApiInstanceLogin(){
+    public static APIInterface getApiInstance(){
         if(apiInterface==null) {
-            return APIClient.getLogin().create(APIInterface.class);
+            return APIClient.getClient().create(APIInterface.class);
         }
         return  apiInterface;
     }

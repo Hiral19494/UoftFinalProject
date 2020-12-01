@@ -50,7 +50,7 @@ public class LoginActivity extends BaseActivity {
                 Log.d("status", String.valueOf(status));
         if (status) {
             Toast.makeText(getApplicationContext(), "Login Successfully", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            Intent i = new Intent(getApplicationContext(), ProductListActivity.class);
             startActivity(i);
         } else {
             Toast.makeText(getApplicationContext(), "You are not Registerd!", Toast.LENGTH_LONG).show();
