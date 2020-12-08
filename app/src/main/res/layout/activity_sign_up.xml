@@ -32,6 +32,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="5dp"
         android:textColorHint="@color/white"
+        app:errorTextAppearance="@style/error_appearance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_logo">
@@ -54,6 +55,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="5dp"
         android:textColorHint="@color/white"
+        app:errorTextAppearance="@style/error_appearance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_username">
@@ -76,6 +78,7 @@
         android:layout_marginEnd="5dp"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:errorTextAppearance="@style/error_appearance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_email">
 
@@ -96,6 +99,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="5dp"
         android:textColorHint="@color/white"
+        app:errorTextAppearance="@style/error_appearance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_password">

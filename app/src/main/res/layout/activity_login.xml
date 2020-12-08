@@ -29,8 +29,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="5dp"
-        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColorHint="@color/white"
+        app:errorTextAppearance="@style/error_appearance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_logo">
 
@@ -52,6 +53,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="5dp"
         android:textColorHint="@color/white"
+        app:errorTextAppearance="@style/error_appearance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_email">

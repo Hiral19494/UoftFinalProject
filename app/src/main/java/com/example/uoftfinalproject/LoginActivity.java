@@ -2,11 +2,12 @@ package com.example.uoftfinalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.uoftfinalproject.data.local.InputValidation;
 import com.example.uoftfinalproject.data.local.MyDatabaseHandler;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,10 +16,15 @@ import butterknife.OnClick;
 public class LoginActivity extends BaseActivity {
 
     @BindView(R.id.edt_email)
-    EditText edtEmail;
+    TextInputEditText edtEmail;
     @BindView(R.id.edt_password)
-    EditText edtPassword;
+    TextInputEditText edtPassword;
+    @BindView(R.id.til_email)
+    TextInputLayout tilEmail;
+    @BindView(R.id.til_password)
+    TextInputLayout tilPassword;
     MyDatabaseHandler myDatabaseHandler;
+    private InputValidation inputValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,35 +33,44 @@ public class LoginActivity extends BaseActivity {
 
         ButterKnife.bind(this);
         myDatabaseHandler = new MyDatabaseHandler(this);
+        inputValidation = new InputValidation(this);
 
     }
 
     @OnClick(R.id.btn_login)
     public void loginDetails(){
-        if(edtEmail.getText().toString().isEmpty()){
-            Toast.makeText(getApplicationContext(), "Enter Email", Toast.LENGTH_SHORT).show();
-            Log.i("emial","Enter Email");
-        }else if(edtPassword.getText().toString().isEmpty()){
-            Toast.makeText(getApplicationContext(), "Enter Password", Toast.LENGTH_SHORT).show();
-            Log.i("password","Enter Password");
-        }else{
-            sqliteDatabaseCall();
+
+        if (!inputValidation.isInputEditTextFilled(edtEmail, tilEmail, getString(R.string.error_message_email))) {
+            return;
         }
+        if (!inputValidation.isInputEditTextEmail(edtEmail, tilEmail, getString(R.string.error_message_email))) {
+            return;
+        }
+        if (!inputValidation.isInputEditTextFilled(edtPassword, tilPassword, getString(R.string.error_message_email))) {
+            return;
+        }
+     sqliteDatabaseCall();
 
     }
 
     private void sqliteDatabaseCall() {
-        boolean status = (myDatabaseHandler.getLoginData(edtEmail.getText().toString(), edtPassword.getText().toString()));
-               Log.d("email",edtEmail.getText().toString());
-                Log.d("status", String.valueOf(status));
-        if (status) {
-            Toast.makeText(getApplicationContext(), "Login Successfully", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(getApplicationContext(), ProductListActivity.class);
-            startActivity(i);
+        if (myDatabaseHandler.checkUser(edtEmail.getText().toString().trim()
+                , edtPassword.getText().toString().trim())) {
+
+
+            Intent accountsIntent = new Intent(this, ProductListActivity.class);
+            emptyInputEditText();
+            startActivity(accountsIntent);
+
+
         } else {
-            Toast.makeText(getApplicationContext(), "You are not Registerd!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.error_valid_email_password),Toast.LENGTH_LONG).show();
 
         }
+    }
+    private void emptyInputEditText() {
+        edtEmail.setText(null);
+        edtPassword.setText(null);
     }
 
     @OnClick(R.id.txv_link_signup)
@@ -64,7 +79,7 @@ public class LoginActivity extends BaseActivity {
         startActivity(signUpScreenIntent);
         finish();
     }
-
-
-
 }
+
+
+

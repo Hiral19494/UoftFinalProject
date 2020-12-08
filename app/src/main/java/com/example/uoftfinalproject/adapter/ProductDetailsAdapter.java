@@ -34,7 +34,7 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAd
     @Override
     public ProductDetailsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.user_comment_adapter, parent, false);
+                .inflate(R.layout.product_list_adapter, parent, false);
         ButterKnife.bind(this, itemView);
 
         return new ProductDetailsAdapter.ViewHolder(itemView);

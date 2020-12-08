@@ -1,10 +1,13 @@
 package com.example.uoftfinalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.uoftfinalproject.adapter.ProductDetailsAdapter;
 import com.example.uoftfinalproject.data.APIClient;
 import com.example.uoftfinalproject.design.MyDividerItemDecoration;
+import com.example.uoftfinalproject.design.clicklistner.RecyclerviewClickListener;
 import com.example.uoftfinalproject.model.Product;
 
 import java.util.ArrayList;
@@ -38,6 +41,19 @@ public class ProductListActivity extends AppCompatActivity {
         apicallproduct();
         productDetailsAdapter = new ProductDetailsAdapter(productList, getApplicationContext());
         rsvProduct.setAdapter(productDetailsAdapter);
+        rsvProduct.addOnItemTouchListener(
+                new RecyclerviewClickListener(getApplicationContext(), new RecyclerviewClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+
+
+                        Intent postidIntent = new Intent(getApplicationContext(), ProductDescriptionActivity.class);
+                        postidIntent.putExtra(ProductDescriptionActivity.PRODUCT, productList.get(position));
+                        startActivity(postidIntent);
+                    }
+                })
+        );
     }
 
     private void apicallproduct() {
