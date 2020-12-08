@@ -9,18 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProductDescriptionActivity"
-            android:theme="@style/login1"></activity>
+        <activity android:name=".LoginActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".ProductDescriptionActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ProductListActivity"
-            android:theme="@style/login1" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".SignUpActivity"
-            android:theme="@style/login1" />
-        <activity android:name=".MainActivity" />
+            android:theme="@style/AppTheme" />
         <activity
-            android:name=".LoginActivity"
-            android:theme="@style/login1">
+            android:name=".SplashActivity"
+            android:theme="@style/SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
