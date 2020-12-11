@@ -36,12 +36,12 @@ public class Product implements Parcelable {
     @SerializedName("tags")
     @Expose
     private List<String> tags = null;
-  /*  @SerializedName("dimensions")
+   @SerializedName("dimensions")
     @Expose
     private Dimensions dimensions;
     @SerializedName("warehouseLocation")
     @Expose
-    private WarehouseLocation warehouseLocation;*/
+    private WarehouseLocation warehouseLocation;
 
 
     public String getProductId() {
@@ -116,7 +116,7 @@ public class Product implements Parcelable {
         this.tags = tags;
     }
 
-    /*public Dimensions getDimensions() {
+    public Dimensions getDimensions() {
         return dimensions;
     }
 
@@ -131,7 +131,7 @@ public class Product implements Parcelable {
     public void setWarehouseLocation(WarehouseLocation warehouseLocation) {
         this.warehouseLocation = warehouseLocation;
     }
-*/
+
     @Override
     public int describeContents() {
         return 0;
@@ -147,8 +147,8 @@ public class Product implements Parcelable {
         dest.writeString(this.web);
         dest.writeValue(this.price);
         dest.writeStringList(this.tags);
-        /*dest.writeParcelable(this.dimensions, flags);
-        dest.writeParcelable(this.warehouseLocation, flags);*/
+        dest.writeParcelable(this.dimensions, flags);
+        dest.writeParcelable(this.warehouseLocation, flags);
     }
 
     public Product() {
@@ -164,8 +164,8 @@ public class Product implements Parcelable {
         this.web = in.readString();
         this.price = (Integer) in.readValue(Integer.class.getClassLoader());
         this.tags = in.createStringArrayList();
-       /* this.dimensions = in.readParcelable(Dimensions.class.getClassLoader());
-        this.warehouseLocation = in.readParcelable(WarehouseLocation.class.getClassLoader());*/
+        this.dimensions = in.readParcelable(Dimensions.class.getClassLoader());
+        this.warehouseLocation = in.readParcelable(WarehouseLocation.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {

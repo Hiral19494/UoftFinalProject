@@ -63,6 +63,7 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ArrayList<Product>> call, Response<ArrayList<Product>> response) {
                 if (response.isSuccessful()){
+
                     productList.addAll(response.body());
                     productDetailsAdapter.notifyDataSetChanged();
 

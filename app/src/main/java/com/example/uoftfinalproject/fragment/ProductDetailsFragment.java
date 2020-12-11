@@ -73,7 +73,9 @@ public class ProductDetailsFragment extends Fragment {
         txvProductDescription.setText("\u2022 " + product.getDescription());
         txvProductPrice.setText("CAD$ " + String.valueOf(product.getPrice()));
         txvProductWeight.setText(product.getWeight() );
-
+        txvProductDimension.setText(product.getDimensions().getLength() +
+                " * " + product.getDimensions().getWidth() +
+                " * " + product.getDimensions().getHeight());
 
         imageModelArrayList = new ArrayList<>();
         imageModelArrayList = imageList();

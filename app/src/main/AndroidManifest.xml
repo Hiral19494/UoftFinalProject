@@ -9,20 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_key" />
         <activity android:name=".LoginActivity"
             android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".ProductDescriptionActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ProductListActivity"
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SignUpActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".SplashActivity"
-            android:theme="@style/SplashActivity">
+            android:name=".ProductListActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,5 +35,6 @@
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 </manifest>

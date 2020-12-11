@@ -92,7 +92,6 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAd
             txvUserName = itemView.findViewById(R.id.txv_user_name);
             imgProduct = itemView.findViewById(R.id.img_product);
             txvPostComment = itemView.findViewById(R.id.txv_post_comment);
-
         }
     }
 }

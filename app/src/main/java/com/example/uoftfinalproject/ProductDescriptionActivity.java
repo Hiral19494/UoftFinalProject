@@ -4,6 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.uoftfinalproject.fragment.MapFragment;
 import com.example.uoftfinalproject.fragment.ProductDetailsFragment;
 import com.example.uoftfinalproject.model.Product;
 
@@ -47,16 +48,16 @@ public class ProductDescriptionActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-          /*  switch (position) {
-                case 0:*/
+           switch (position) {
+                case 0:
                     return ProductDetailsFragment.newInstance(product);
 
-            /*    case 1:
+                case 1:
                     return new MapFragment().newInstance(product);
-*/
 
-           // }
 
+            }
+            return  null;
         }
 
         @Override
@@ -67,12 +68,12 @@ public class ProductDescriptionActivity extends BaseActivity {
         @Override
         public CharSequence getPageTitle(int position) {
 
-            return "Details";
-           /* if (position == 0) {
+
+            if (position == 0) {
                 return "Details";
             } else {
                 return "Map";
-            }*/
+            }
         }
     }
 }
