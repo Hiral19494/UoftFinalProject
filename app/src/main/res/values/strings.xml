@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Uoft Final Project</string>
+    <string name="app_name">Famous</string>
     <string name="email">Email</string>
     <string name="logo">Logo</string>
     <string name="login">Login</string>
@@ -21,6 +21,7 @@
     <string name="technical_details">Technical Details</string>
     <string name="item_weight">Item Weight:</string>
     <string name="product_dimensions">Product Dimensions:</string>
-    <string name="google_maps_key" >AIzaSyAVuPC5FcqNuKNOqUr4Uhlnk5vuh1yHktA</string>
+    <string name="google_maps_key">AIzaSyAVuPC5FcqNuKNOqUr4Uhlnk5vuh1yHktA</string>
+    <string name="website">Website</string>
 
 </resources>

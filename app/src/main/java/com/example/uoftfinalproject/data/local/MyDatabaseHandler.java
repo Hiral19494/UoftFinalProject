@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.uoftfinalproject.model.UserInfo;
 
@@ -49,11 +50,14 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
         c.put(COLUMN_EMAIL,userInfo.getEmail());
         c.put(COLUMN_PASSWORD,userInfo.getPassword());
      db.insert(TABLE_USERS,null,c);
+        Log.i("Add user", "user insert");
      db.close();
 
 
     }
     public boolean checkUser(String email) {
+
+        Log.i("Check email", "check email by user_id");
         // array of columns to fetch
         String[] columns = {
                 COLUMN_ID

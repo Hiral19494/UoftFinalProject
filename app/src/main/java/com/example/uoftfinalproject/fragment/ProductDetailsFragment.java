@@ -1,15 +1,17 @@
 package com.example.uoftfinalproject.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.uoftfinalproject.R;
+import com.example.uoftfinalproject.WebViewActivity;
 import com.example.uoftfinalproject.adapter.SlidingImageAdapter;
 import com.example.uoftfinalproject.model.ImageModel;
 import com.example.uoftfinalproject.model.Product;
@@ -20,10 +22,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.example.uoftfinalproject.WebViewActivity.WEBDATA;
 
 public class ProductDetailsFragment extends Fragment {
 
@@ -34,9 +40,12 @@ public class ProductDetailsFragment extends Fragment {
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
     private ArrayList<ImageModel> imageModelArrayList;
-    public EditText edtNumber;
-    public EditText edtMsg;
-
+    @BindView(R.id.txv_product_web)
+    TextView txvWebsite;
+    @BindView(R.id.txv_phone_no)
+    TextView txvPhoneNo;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.txv_product_weight)
     TextView txvProductWeight;
     @BindView(R.id.txv_product_dimension)
@@ -62,14 +71,12 @@ public class ProductDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_product_details, parent, false);
 
         ButterKnife.bind(this, view);
-        //((AppCompatActivity)getActivity()).setSupportActionBar((Toolbar) view.findViewById(R.id.toolbar));
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         product = (Product) getArguments().get(PRODUCT);
-        getActivity().setTitle("Product Description");
 
         txvProductName.setText(product.getName());
-        // txvPhone.setText(product.getPhone());
-        //txvWeb.setText(product.getWeb());
+        txvPhoneNo.setText(product.getPhone());
+        txvWebsite.setText(product.getWeb());
         txvProductDescription.setText("\u2022 " + product.getDescription());
         txvProductPrice.setText("CAD$ " + String.valueOf(product.getPrice()));
         txvProductWeight.setText(product.getWeight() );
@@ -81,9 +88,25 @@ public class ProductDetailsFragment extends Fragment {
         imageModelArrayList = imageList();
         imageSlide();
 
-
         return view;
     }
+    @OnClick(R.id.txv_product_web)
+    public void onClickWeb() {
+        Log.i("Web","WebActivity call");
+        Intent webdataIntent = new Intent(getActivity(), WebViewActivity.class);
+        webdataIntent.putExtra(WEBDATA, product);
+        startActivity(webdataIntent);
+    }
+
+    @OnClick(R.id.txv_phone_no)
+    public void onClickPhone() {
+        Log.i("Phone Dial", "Phone Dial Pad call");
+        Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
+        phoneIntent.setData(Uri.parse("tel:" + product.getPhone()));
+        startActivity(phoneIntent);
+
+    }
+
     private ArrayList<ImageModel> imageList() {
         ArrayList<ImageModel> list = new ArrayList<>();
         if (product.getImages() != null) {
@@ -93,7 +116,7 @@ public class ProductDetailsFragment extends Fragment {
                 list.add(imageModel);
             }
         }
-        Log.d("list", String.valueOf(list));
+        Log.i("list", String.valueOf(list));
         return list;
     }
 

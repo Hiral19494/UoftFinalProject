@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Dimensions implements Parcelable {
 
+
     @SerializedName("length")
     @Expose
     private Double length;

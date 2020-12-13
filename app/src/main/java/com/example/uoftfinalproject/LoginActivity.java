@@ -2,6 +2,7 @@ package com.example.uoftfinalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.uoftfinalproject.data.local.InputValidation;
@@ -39,14 +40,16 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.btn_login)
     public void loginDetails(){
-
         if (!inputValidation.isInputEditTextFilled(edtEmail, tilEmail, getString(R.string.error_message_email))) {
+            Log.i("Email Validation","Enter  Email");
             return;
         }
         if (!inputValidation.isInputEditTextEmail(edtEmail, tilEmail, getString(R.string.error_message_email))) {
+            Log.i("Email Validation","Enter  valid Email");
             return;
         }
-        if (!inputValidation.isInputEditTextFilled(edtPassword, tilPassword, getString(R.string.error_message_email))) {
+        if (!inputValidation.isInputEditTextFilled(edtPassword, tilPassword, getString(R.string.error_message_password))) {
+            Log.i("Password Validation","Enter Password");
             return;
         }
      sqliteDatabaseCall();
@@ -59,22 +62,26 @@ public class LoginActivity extends BaseActivity {
 
 
             Intent accountsIntent = new Intent(this, ProductListActivity.class);
+            Log.i("Login Successful","Login Successful");
             emptyInputEditText();
             startActivity(accountsIntent);
 
 
         } else {
             Toast.makeText(getApplicationContext(),getString(R.string.error_valid_email_password),Toast.LENGTH_LONG).show();
+            Log.i("Login error","Wrong Email or Password");
 
         }
     }
     private void emptyInputEditText() {
         edtEmail.setText(null);
         edtPassword.setText(null);
+        Log.i("EditText ","all edit text null");
     }
 
     @OnClick(R.id.txv_link_signup)
     public void signUpDetails(){
+        Log.i("Sign up ","Sign Up class called");
         Intent signUpScreenIntent = new Intent(LoginActivity.this,SignUpActivity.class);
         startActivity(signUpScreenIntent);
         finish();

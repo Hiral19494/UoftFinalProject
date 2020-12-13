@@ -8,6 +8,7 @@ import com.example.uoftfinalproject.fragment.MapFragment;
 import com.example.uoftfinalproject.fragment.ProductDetailsFragment;
 import com.example.uoftfinalproject.model.Product;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -29,8 +30,10 @@ public class ProductDescriptionActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_description);
-
+        Log.i("ProductDescription","Product");
         ButterKnife.bind(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("ProductDescription");
         product = getIntent().getParcelableExtra(PRODUCT);
         productPageAdapter = new ProductPageAdapter(getSupportFragmentManager());
         viewPagerProduct.setAdapter(productPageAdapter);
@@ -39,6 +42,7 @@ public class ProductDescriptionActivity extends BaseActivity {
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
                 1);
     }
+
     public class ProductPageAdapter extends FragmentStatePagerAdapter {
 
         public ProductPageAdapter(FragmentManager fm) {
@@ -50,9 +54,10 @@ public class ProductDescriptionActivity extends BaseActivity {
         public Fragment getItem(int position) {
            switch (position) {
                 case 0:
+                    Log.i("ProductDetalis","Details Fragment Call");
                     return ProductDetailsFragment.newInstance(product);
-
-                case 1:
+               case 1:
+                   Log.i("ProductDetails","Map Fragment call");
                     return new MapFragment().newInstance(product);
 
 

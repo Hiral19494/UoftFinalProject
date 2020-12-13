@@ -117,26 +117,60 @@
         app:layout_constraintRight_toLeftOf="@+id/txv_dimension"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="150dp"/>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/txv_product_dimension"/>
+
+
+    <TextView
+        android:id="@+id/txv_website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/website"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider3"/>
+
+    <TextView
+        android:id="@+id/txv_product_web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="weight"
+        android:textColor="@color/blue"
+        android:textSize="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txv_website"
+        app:layout_constraintRight_toLeftOf="@+id/txv_website"
+        app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/txv_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Store Phone No:"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txv_website"/>
+
+    <TextView
+        android:id="@+id/txv_phone_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:textColor="@color/blue"
+        android:textSize="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txv_call"
+        app:layout_constraintRight_toLeftOf="@+id/txv_call"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-        <!--
-
-        <RelativeLayout
-            android:id="@+id/rl_technical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/divider1"
-            android:layout_marginLeft="@dimen/padd_10"
-            android:layout_marginTop="@dimen/padd_10">
-
-
-        </RelativeLayout>-->
-
-
-
-
-
 </androidx.core.widget.NestedScrollView>

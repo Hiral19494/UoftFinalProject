@@ -44,6 +44,9 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAd
     public void onBindViewHolder(@NonNull ProductDetailsAdapter.ViewHolder holder, int position) {
         Product productModel = productList.get(position);
         Log.d("PriceValue", productModel.getPrice().toString());
+        Log.d("ProductName", productModel.getName());
+        Log.d("ProductDescription", productModel.getDescription());
+        Log.d("ProductImage", productModel.getImages().toString());
         holder.txvPorductPrice.setText("$" + productModel.getPrice());
         holder.txvUserName.setText(productModel.getName());
         holder.txvPostComment.setText(productModel.getDescription());
@@ -59,7 +62,7 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAd
                                 .dontTransform().dontAnimate()
                                 .override(90,90))
                         .into(holder.imgProduct);
-                // Glide.with(context).setDefaultRequestOptions(requestOptions).load((productModel.getImages().get(1))).into(holder.imgProduct);;
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

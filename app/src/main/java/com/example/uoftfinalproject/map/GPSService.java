@@ -14,6 +14,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.List;
@@ -187,6 +188,7 @@ public class GPSService extends Service implements LocationListener {
     public double getLatitude() {
         if (mLocation != null) {
             mLatitude = mLocation.getLatitude();
+            Log.i("User latitude ", String.valueOf(mLatitude));
         }
         return mLatitude;
     }
@@ -199,6 +201,7 @@ public class GPSService extends Service implements LocationListener {
     public double getLongitude() {
         if (mLocation != null) {
             mLongitude = mLocation.getLongitude();
+            Log.i("User longitude ", String.valueOf(mLongitude));
         }
         return mLongitude;
     }

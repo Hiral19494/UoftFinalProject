@@ -142,7 +142,7 @@ public class MapFragment extends Fragment {
 
         }
         String str_dest = "destination=" + product.getWarehouseLocation().getLatitude() + "," + product.getWarehouseLocation().getLongitude();
-       Log.d("destitation",str_dest);
+       Log.d("destitation latlong",str_dest);
         MarkerOptions optionDest= new MarkerOptions();
         LatLng latLngDest = new LatLng(product.getWarehouseLocation().getLatitude(),product.getWarehouseLocation().getLongitude());
         optionDest.position(latLngDest);
